@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: webfontkitgenerator\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-31 23:24-0500\n"
-"PO-Revision-Date: 2020-10-25 02:18+0200\n"
-"Last-Translator: \n"
-"Language-Team: https://github.com/martin-sk\n"
-"Language: sk_SK\n"
+"PO-Revision-Date: 2021-05-29 11:17-0300\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"X-Generator: Poedit 2.4.3\n"
+"Last-Translator: Gustavo Costa <xfgusta@gmail.com>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: pt_BR\n"
 
 #: data/com.rafaelmardojai.WebfontKitGenerator.desktop.in:3
 #: data/com.rafaelmardojai.WebfontKitGenerator.metainfo.xml.in:6
@@ -27,7 +27,7 @@ msgstr "Webfont Kit Generator"
 #: data/com.rafaelmardojai.WebfontKitGenerator.metainfo.xml.in:7
 #: src/resources/ui/about.ui:9
 msgid "Create @font-face kits easily"
-msgstr "Vytvorte @font-face jednoducho"
+msgstr "Crie facilmente kits @font-face"
 
 #: data/com.rafaelmardojai.WebfontKitGenerator.metainfo.xml.in:9
 msgid ""
@@ -35,8 +35,8 @@ msgid ""
 "woff2 and the necessary CSS boilerplate from non-web font formats (otf and "
 "ttf)."
 msgstr ""
-"Webfont Kit Generator je jednoduchý nástroj, ktorý vám umožňuje generovať "
-"woff, woff2 a potrebný CSS pre iné ako webové formáty písma (otf a ttf)."
+"Webfont Kit Generator é um utilitário simples que permite gerar woff, woff2 "
+"e o CSS necessário a partir de formatos de fonte não-web (otf e ttf)."
 
 #: data/com.rafaelmardojai.WebfontKitGenerator.metainfo.xml.in:16
 msgid "Rafael Mardojai CM"
@@ -44,115 +44,113 @@ msgstr "Rafael Mardojai CM"
 
 #: src/resources/ui/window.ui:48
 msgid "Generate"
-msgstr "Generovať"
+msgstr "Gerar"
 
 #: src/resources/ui/window.ui:110
 msgid "Add some fonts"
-msgstr "Pridajte písma"
+msgstr "Adicione algumas fontes"
 
 #: src/resources/ui/window.ui:162
 msgid "Open Fonts"
-msgstr "Otvoriť písma"
+msgstr "Abrir fontes"
 
 #: src/resources/ui/window.ui:212
 msgid "Output directory"
-msgstr "Výstupný adresár"
+msgstr "Diretório de saída"
 
 #: src/resources/ui/window.ui:224
 msgid "Select a directory"
-msgstr "Vyberte adresár"
+msgstr "Selecionar um diretório"
 
 #: src/resources/ui/window.ui:237
 msgid "Browse..."
-msgstr "Vyhľadať..."
+msgstr "Navegar..."
 
 #: src/resources/ui/window.ui:266 src/resources/ui/window.ui:308
 #: src/resources/ui/options.ui:33
 msgid "Fonts"
-msgstr "Písma"
+msgstr "Fontes"
 
 #: src/resources/ui/window.ui:366
 msgid "Cancel"
-msgstr "Zrušiť"
+msgstr "Cancelar"
 
 #: src/resources/ui/window.ui:433 src/generator.py:55
 msgid "Generation finished!"
-msgstr "Generovanie je hotové!"
+msgstr "Geração terminada!"
 
 #: src/resources/ui/window.ui:451
 msgid "To link your fonts, copy the code below into the head of your HTML:"
 msgstr ""
-"Ak chcete použiť svoje písma, skopírujte nižšie uvedený kód do hlavičky kódu "
-"HTML:"
+"Para vincular suas fontes, copie o código abaixo no cabeçalho do seu HTML:"
 
 #: src/resources/ui/window.ui:465
-#, fuzzy
 msgid "Or import it directly to your CSS:"
-msgstr "Alebo ich naimportujte priamo do CSS:"
+msgstr "Ou importe diretamente para o seu CSS:"
 
 #: src/resources/ui/window.ui:477
 msgid "Open in Files"
-msgstr "Otvoriť v súboroch"
+msgstr "Abrir em Arquivos"
 
 #: src/resources/ui/window.ui:497
 msgid "Information"
-msgstr "Informácia"
+msgstr "Informação"
 
 #: src/resources/ui/window.ui:533
 msgid "Logs"
-msgstr "Logy"
+msgstr "Logs"
 
 #: src/resources/ui/options.ui:71
 msgid "Subsetting"
-msgstr "Podnastavenia"
+msgstr "Subconjunto"
 
 #: src/resources/ui/options.ui:72
 msgid "Limit the character set to reduce file size"
-msgstr "Ak chcete zmenšiť veľkosť súboru, obmedzte znakovú sadu"
+msgstr "Limita o conjunto de caracteres para reduzir o tamanho do arquivo"
 
 #: src/resources/ui/options.ui:94
 msgid "Latin"
-msgstr "Latinka"
+msgstr "Latim"
 
 #: src/resources/ui/options.ui:108
 msgid "Cyrillic"
-msgstr "Azbuka"
+msgstr "Cirílico"
 
 #: src/resources/ui/options.ui:122
 msgid "Greek"
-msgstr "Grécke"
+msgstr "Grego"
 
 #: src/resources/ui/options.ui:136
 msgid "Vietnamese"
-msgstr "Vietnamské"
+msgstr "Vietnamita"
 
 #: src/resources/ui/options.ui:159
 msgid "Latin Extended"
-msgstr "Rozšírená latinka"
+msgstr "Latim estendido"
 
 #: src/resources/ui/options.ui:173
 msgid "Cyrillic Extended"
-msgstr "Azbuka rozšírená"
+msgstr "Cirílico estendido"
 
 #: src/resources/ui/options.ui:187
 msgid "Greek Extended"
-msgstr "Grécky rozšírený"
+msgstr "Grego estendido"
 
 #: src/resources/ui/options.ui:201
 msgid "Devanagari"
-msgstr "Devanagari"
+msgstr "Devanágari"
 
 #: src/resources/ui/options.ui:234
 msgid "Custom"
-msgstr "Vlastné"
+msgstr "Personalizado"
 
 #: src/resources/ui/options.ui:246
 msgid ""
 "Comma separated values. Single hex values and/or ranges separated with "
 "hyphens."
 msgstr ""
-"Hodnoty oddelené čiarkou. Jednotlivé hexadecimálne hodnoty alebo rozsahy "
-"oddelené pomlčkami."
+"Valores separados por vírgula. Valores hexadecimais únicos e/ou intervalos "
+"separados por hifens."
 
 #: src/resources/ui/options.ui:282
 msgid "CSS"
@@ -160,101 +158,78 @@ msgstr "CSS"
 
 #: src/resources/ui/options.ui:286
 msgid "Font display"
-msgstr "Zobrazenie písma"
+msgstr "Exibição da fonte"
 
 #: src/resources/ui/options.ui:287
 msgid "The CSS font-display descriptor"
-msgstr "Deskriptor zobrazenia písma CSS"
+msgstr "O descritor de exibição da fonte CSS"
 
 #: src/window.py:63
-#, fuzzy
 msgid "Options"
-msgstr "Výstupné nastavenia"
+msgstr "Opções"
 
 #: src/window.py:92
 msgid "OTF & TTF"
-msgstr "OTF a TTF"
+msgstr "OTF e TTF"
 
 #: src/window.py:99
 msgid "Open font files"
-msgstr "Otvoriť súbory písiem"
+msgstr "Abrir arquivos de fonte"
 
 #: src/window.py:127
 msgid "Select output directory"
-msgstr "Vyberte výstupný adresár"
+msgstr "Selecionar diretório de saída"
 
 #: src/window.py:147
-#, fuzzy
 msgid "Output directory error"
-msgstr "Výstupný adresár"
+msgstr "Erro no diretório de saída"
 
 #: src/window.py:149
 msgid "You don't have write access to the selected directory."
-msgstr "Nemáte dostatočné práva na zápis do zvolehéno adresára."
+msgstr "Você não tem acesso de escrita ao diretório selecionado."
 
 #: src/options.py:43
 msgid "Disabled"
-msgstr "Zakázané"
+msgstr "Desativado"
 
 #: src/generator.py:65
 #, python-format
 msgid "Generating fonts for %s:"
-msgstr "Generuje sa písmo pre %s:"
+msgstr "Gerando fontes para %s:"
 
 #: src/generator.py:112
 #, python-brace-format
 msgid "Generated <i>{filename}</i> with <i>{count}</i> glyphs."
-msgstr "Vygenerované <i>{filename}</i> s <i>{count}</i> znakmi."
+msgstr "<i>{filename}</i> gerado com <i>{count}</i> glifos."
 
 #: src/generator.py:125
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "No glyphs where found for {range}. Skipping."
-msgstr "Pre glyfy sa nenašli žiadne znaky. Preskakujem."
+msgstr "Nenhum glifo encontrado para {range}. Pulando."
 
 #: src/generator.py:143
 msgid "Generating CSS:"
-msgstr "Generovanie CSS:"
+msgstr "Gerando CSS:"
 
 #: src/generator.py:162
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Generated <i>{filename}</i>."
-msgstr "Vygenerované <i>%s</i>."
+msgstr "<i>{filename}</i> gerado."
 
 #: src/generator.py:166
 msgid "There is no CSS to generate."
-msgstr "Žiadne CSS na vygenerovanie."
+msgstr "Não há CSS para gerar."
 
 #: src/loader.py:46 src/loader.py:57
 msgid "Font loading error"
-msgstr "Chyba pri nahrávaní písma"
+msgstr "Erro ao carregar fonte"
 
 #: src/loader.py:47
 #, python-brace-format
 msgid "You don't have read access to {font} or it doesn't exists."
-msgstr "Nemáte právo na čítanie písma {font}, alebo neexistuje."
+msgstr "Você não tem acesso de leitura para {font} ou ela não existe."
 
 #: src/loader.py:58
 #, python-brace-format
 msgid "Something happened when trying to load {font}."
-msgstr "Niečo sa pokazilo počas nahrávania písma {font}."
-
-#~ msgid "Webfont Kit Generator uses fontTools python library under the hood."
-#~ msgstr "Webfont Kit Generator využíva pythonovú knižnicu fontTools."
-
-#~ msgid "Source Fonts"
-#~ msgstr "Zdroj písiem"
-
-#~ msgid ""
-#~ "Create @font-face kits easily\n"
-#~ "Basen on python fontTools library\n"
-#~ "    "
-#~ msgstr ""
-#~ "Vytvorte @font-face jednoducho\n"
-#~ "Založené na python fontTools knižnici\n"
-#~ "    "
-
-#~ msgid "OTF Fonts"
-#~ msgstr "OTF písma"
-
-#~ msgid "TTF Fonts"
-#~ msgstr "TTF písma"
+msgstr "Algo ocorreu ao tentar carregar {font}."

@@ -1,4 +1,4 @@
-# Copyright 2020 Rafael Mardojai CM
+# Copyright 2020-2021 Rafael Mardojai CM
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from gettext import gettext as _
@@ -44,6 +44,8 @@ class Options(Gtk.Box):
         for i, o in enumerate(options):
             model.insert(i, Handy.ValueObject.new(o))
         self.font_display.bind_name_model(model, Handy.ValueObject.dup_string)
+
+        self.custom.connect('changed', self._validate_subsetting)
 
     def load_saved(self):
         self.subset_btns = [
@@ -112,8 +114,7 @@ class Options(Gtk.Box):
         try:
             if parse_unicodes(self.custom.get_text()):
                 ranges['custom'] = self.custom.get_text()
-        except ValueError:
-            # TODO: show error
+        except Exception:
             pass
 
         if len(ranges) == 0:
@@ -122,4 +123,13 @@ class Options(Gtk.Box):
 
     def get_font_display(self):
         return self.font_display.get_selected_index()
+
+    def _validate_subsetting(self, _entry):
+        try:
+            parse_unicodes(self.custom.get_text())
+            if Gtk.StyleContext.has_class(self.custom.get_style_context(), 'error'):
+                Gtk.StyleContext.remove_class(self.custom.get_style_context(), 'error')
+        except Exception:
+            if not Gtk.StyleContext.has_class(self.custom.get_style_context(), 'error'):
+                Gtk.StyleContext.add_class(self.custom.get_style_context(), 'error')
                 
