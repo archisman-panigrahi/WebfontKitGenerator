@@ -1,33 +1,33 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Galician translations for webfontkitgenerator package.
+# Copyright (C) 2021 THE webfontkitgenerator'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the webfontkitgenerator package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Fran Dieguez <frandieguez@gnome.org>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: webfontkitgenerator\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-27 10:03-0500\n"
-"PO-Revision-Date: 2021-05-29 11:17-0300\n"
-"Last-Translator: Gustavo Costa <xfgusta@gmail.com>\n"
-"Language-Team: \n"
-"Language: pt_BR\n"
+"PO-Revision-Date: 2021-09-11 22:52+0200\n"
+"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.3\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #: data/com.rafaelmardojai.WebfontKitGenerator.desktop.in:3
 #: data/com.rafaelmardojai.WebfontKitGenerator.metainfo.xml.in:6
 msgid "Webfont Kit Generator"
-msgstr "Webfont Kit Generator"
+msgstr "Xerador de Kits de Fontes Web"
 
 #: data/com.rafaelmardojai.WebfontKitGenerator.desktop.in:4
 #: data/com.rafaelmardojai.WebfontKitGenerator.metainfo.xml.in:7
 #: webfontkitgenerator/resources/about.ui:5
 msgid "Create @font-face kits easily"
-msgstr "Crie facilmente kits @font-face"
+msgstr "Cree kits de @font-face facilmente"
 
 #: data/com.rafaelmardojai.WebfontKitGenerator.metainfo.xml.in:9
 msgid ""
@@ -35,8 +35,9 @@ msgid ""
 "woff2 and the necessary CSS boilerplate from non-web font formats (otf and "
 "ttf)."
 msgstr ""
-"Webfont Kit Generator é um utilitário simples que permite gerar woff, woff2 "
-"e o CSS necessário a partir de formatos de fonte não-web (otf e ttf)."
+"O Xerador de kits de fontes de web é unha utilidade sinxela que lle permite "
+"xerar woff, woff2 e o código CSS necesario para os formatos de fonte non web "
+"(otf e ttf)."
 
 #: data/com.rafaelmardojai.WebfontKitGenerator.metainfo.xml.in:16
 msgid "Rafael Mardojai CM"
@@ -54,12 +55,12 @@ msgstr ""
 #: webfontkitgenerator/resources/window.ui:18
 #, fuzzy
 msgid "_About Webfont Kit Generator"
-msgstr "Webfont Kit Generator"
+msgstr "Xerador de Kits de Fontes Web"
 
 #: webfontkitgenerator/resources/window.ui:48
 #: webfontkitgenerator/resources/window.ui:112
 msgid "Open Fonts"
-msgstr "Abrir fontes"
+msgstr "Abrir tipos de letra"
 
 #: webfontkitgenerator/resources/window.ui:55
 msgid "Menu"
@@ -68,24 +69,24 @@ msgstr ""
 #: webfontkitgenerator/resources/window.ui:69
 #: webfontkitgenerator/resources/options.ui:21
 msgid "Fonts"
-msgstr "Fontes"
+msgstr "Tipos de letra"
 
 #: webfontkitgenerator/resources/window.ui:87
 msgid "Add some fonts"
-msgstr "Adicione algumas fontes"
+msgstr "Engadir algúns tipos de letra"
 
 #: webfontkitgenerator/resources/window.ui:199 webfontkitgenerator/window.py:61
 #, fuzzy
 msgid "Select Output Directory"
-msgstr "Selecionar diretório de saída"
+msgstr "Seleccione un cartafol de saída"
 
 #: webfontkitgenerator/resources/window.ui:208
 msgid "Browse..."
-msgstr "Navegar..."
+msgstr "Explorar…"
 
 #: webfontkitgenerator/resources/window.ui:216
 msgid "Generate"
-msgstr "Gerar"
+msgstr "Xerar"
 
 #: webfontkitgenerator/resources/window.ui:255
 #: webfontkitgenerator/resources/google.ui:110
@@ -94,41 +95,42 @@ msgstr "Cancelar"
 
 #: webfontkitgenerator/resources/window.ui:300
 msgid "Information"
-msgstr "Informação"
+msgstr "Información"
 
 #: webfontkitgenerator/resources/window.ui:308
 #: webfontkitgenerator/generator.py:57
 msgid "Generation finished!"
-msgstr "Geração terminada!"
+msgstr "Xeración finalizada!"
 
 #: webfontkitgenerator/resources/window.ui:319
 msgid "To link your fonts, copy the code below into the head of your HTML:"
 msgstr ""
-"Para vincular suas fontes, copie o código abaixo no cabeçalho do seu HTML:"
+"Para ligar os seus tipos de letra, copie o código de abaixo na cabeceira do "
+"seu HTML:"
 
 #: webfontkitgenerator/resources/window.ui:328
 msgid "Or import it directly to your CSS:"
-msgstr "Ou importe diretamente para o seu CSS:"
+msgstr "Ou impórteo directmente desde o seu CSS:"
 
 #: webfontkitgenerator/resources/window.ui:337
 msgid "Open in Files"
-msgstr "Abrir em Arquivos"
+msgstr "Abrir en Ficheiros"
 
 #: webfontkitgenerator/resources/window.ui:358
 msgid "Logs"
-msgstr "Logs"
+msgstr "Rexistros"
 
 #: webfontkitgenerator/resources/options.ui:50
 msgid "Subsetting"
-msgstr "Subconjunto"
+msgstr "Subconxuntos"
 
 #: webfontkitgenerator/resources/options.ui:51
 msgid "Limit the character set to reduce file size"
-msgstr "Limita o conjunto de caracteres para reduzir o tamanho do arquivo"
+msgstr "Limitar o conxunto de caracteres para reducir o tamaño de ficheiro"
 
 #: webfontkitgenerator/resources/options.ui:69
 msgid "Latin"
-msgstr "Latim"
+msgstr "Latín"
 
 #: webfontkitgenerator/resources/options.ui:80
 msgid "Cyrillic"
@@ -144,19 +146,19 @@ msgstr "Vietnamita"
 
 #: webfontkitgenerator/resources/options.ui:121
 msgid "Latin Extended"
-msgstr "Latim estendido"
+msgstr "Latín extendido"
 
 #: webfontkitgenerator/resources/options.ui:132
 msgid "Cyrillic Extended"
-msgstr "Cirílico estendido"
+msgstr "Cirílico extendido"
 
 #: webfontkitgenerator/resources/options.ui:143
 msgid "Greek Extended"
-msgstr "Grego estendido"
+msgstr "Grego extendido"
 
 #: webfontkitgenerator/resources/options.ui:154
 msgid "Devanagari"
-msgstr "Devanágari"
+msgstr "Devanagari"
 
 #: webfontkitgenerator/resources/options.ui:182
 msgid "Custom"
@@ -167,8 +169,8 @@ msgid ""
 "Comma separated values. Single hex values and/or ranges separated with "
 "hyphens."
 msgstr ""
-"Valores separados por vírgula. Valores hexadecimais únicos e/ou intervalos "
-"separados por hifens."
+"Valores separados por comas. Valores hexadecimais sinxelos e/ou rangos "
+"separados por guións."
 
 #: webfontkitgenerator/resources/options.ui:214
 msgid "CSS"
@@ -176,15 +178,15 @@ msgstr "CSS"
 
 #: webfontkitgenerator/resources/options.ui:217
 msgid "Font display"
-msgstr "Exibição da fonte"
+msgstr "Visualización do tipo de letra"
 
 #: webfontkitgenerator/resources/options.ui:218
 msgid "The CSS font-display descriptor"
-msgstr "O descritor de exibição da fonte CSS"
+msgstr "O descritor de CSS de font-display"
 
 #: webfontkitgenerator/resources/options.ui:222
 msgid "Disabled"
-msgstr "Desativado"
+msgstr "Desactivado"
 
 #: webfontkitgenerator/resources/google.ui:35
 msgid "Download fonts from Google Fonts for self-hosting"
@@ -197,12 +199,12 @@ msgstr ""
 #: webfontkitgenerator/window.py:54
 #, fuzzy
 msgid "Open Font Files"
-msgstr "Abrir arquivos de fonte"
+msgstr "Abrir ficheiros de tipos de letra"
 
 #. Setup view stack pages
 #: webfontkitgenerator/window.py:77
 msgid "Options"
-msgstr "Opções"
+msgstr "Opcións"
 
 #: webfontkitgenerator/window.py:100
 msgid "OTF & TTF"
@@ -210,31 +212,31 @@ msgstr "OTF e TTF"
 
 #: webfontkitgenerator/window.py:200
 msgid "You don't have write access to the selected directory."
-msgstr "Você não tem acesso de escrita ao diretório selecionado."
+msgstr "Non ten permisos de escritura no cartafol seleccionado"
 
 #: webfontkitgenerator/generator.py:68
 #, fuzzy, python-brace-format
 msgid "Generating fonts for {name}:"
-msgstr "Gerando fontes para %s:"
+msgstr "Xerando tipos de letra para %s:"
 
 #: webfontkitgenerator/generator.py:70
 #, fuzzy, python-brace-format
 msgid "Generating {name}"
-msgstr "Gerando CSS:"
+msgstr "Xerando CSS:"
 
 #: webfontkitgenerator/generator.py:118
 #, python-brace-format
 msgid "Generated <i>{filename}</i> with <i>{count}</i> glyphs."
-msgstr "<i>{filename}</i> gerado com <i>{count}</i> glifos."
+msgstr "Xerado <i>{filename}</i> con glifos <i>{count}</i>."
 
 #: webfontkitgenerator/generator.py:131
 #, python-brace-format
 msgid "No glyphs where found for {range}. Skipping."
-msgstr "Nenhum glifo encontrado para {range}. Pulando."
+msgstr "Non se atoparon glifos para {range}. Omitindo."
 
 #: webfontkitgenerator/generator.py:146
 msgid "Generating CSS:"
-msgstr "Gerando CSS:"
+msgstr "Xerando CSS:"
 
 #: webfontkitgenerator/generator.py:147
 msgid "Finishing"
@@ -243,11 +245,11 @@ msgstr ""
 #: webfontkitgenerator/generator.py:166
 #, python-brace-format
 msgid "Generated <i>{filename}</i>."
-msgstr "<i>{filename}</i> gerado."
+msgstr "<i>{filename}</i> xerado."
 
 #: webfontkitgenerator/generator.py:170
 msgid "There is no CSS to generate."
-msgstr "Não há CSS para gerar."
+msgstr "Non hai CSS xerado."
 
 #: webfontkitgenerator/google.py:81
 msgid "Loading Google Fonts Database"
@@ -278,7 +280,7 @@ msgstr ""
 #: webfontkitgenerator/google.py:203
 #, fuzzy, python-brace-format
 msgid "Downloading {name}"
-msgstr "Erro ao carregar fonte"
+msgstr "Erro ao cargar o tipo de letra"
 
 #: webfontkitgenerator/google.py:219
 #, python-brace-format
@@ -297,7 +299,7 @@ msgstr ""
 #: webfontkitgenerator/loader.py:50
 #, python-brace-format
 msgid "You don't have read access to {font} or it doesn't exists."
-msgstr "Você não tem acesso de leitura para {font} ou ela não existe."
+msgstr "Non ten acceso de lectura a {font} ou non existe."
 
 #: webfontkitgenerator/loader.py:59
 #, python-brace-format
@@ -305,14 +307,14 @@ msgid "Error: {error}."
 msgstr ""
 
 #~ msgid "Output directory"
-#~ msgstr "Diretório de saída"
+#~ msgstr "Cartafol de saída"
 
 #~ msgid "Select a directory"
-#~ msgstr "Selecionar um diretório"
+#~ msgstr "Seleccione un cartafol"
 
 #~ msgid "Output directory error"
-#~ msgstr "Erro no diretório de saída"
+#~ msgstr "Erro no cartafol de saída"
 
 #, python-brace-format
 #~ msgid "Something happened when trying to load {font}."
-#~ msgstr "Algo ocorreu ao tentar carregar {font}."
+#~ msgstr "Algo pasou ao tentar cargar {font}."

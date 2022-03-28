@@ -5,7 +5,8 @@ import os
 from urllib.parse import urlparse, unquote
 
 from gettext import gettext as _
-from gi.repository import Gtk
+from threading import Thread
+from gi.repository import Adw, GLib, Gtk
 from fontTools.ttLib import TTFont
 
 from webfontkitgenerator.font import Font
@@ -13,15 +14,20 @@ from webfontkitgenerator.font import Font
 
 class Loader(object):
 
-    def __init__(self, window, model, files):
+    def __init__(self, window, model):
         self.window = window
         self.model = model
-        self.files = files
 
-    def load(self):
+    def load(self, files):
+        thread = Thread(target=self._load, args=(files,))
+        thread.daemon = True
+        thread.start()
+
+
+    def _load(self, files):
         self.window.processing = True
 
-        for f in self.files:
+        for f in files:
             try:
                 path = None
                 if isinstance(f, str):
@@ -39,37 +45,28 @@ class Loader(object):
                     data = self._get_font_data(ttfont['name'].getDebugName)
                     ttfont.close()
                     font = Font(path, data)
-                    self.model.append(font)
+                    GLib.idle_add(self.model.append, font)
                 else:
-                    error_dialog = Gtk.MessageDialog(self.window, 0,
-                                                     Gtk.MessageType.WARNING,
-                                                     Gtk.ButtonsType.OK,
-                                                     _('Font loading error'))
                     error_text = _("You don't have read access to {font} or it doesn't exists.")
-                    error_dialog.format_secondary_text(error_text.format(font=path))
-                    error_response = error_dialog.run()
-                    if error_response == Gtk.ResponseType.OK:
-                        error_dialog.destroy()
+                    GLib.idle_add(
+                        self._show_error,
+                        error_text.format(font=path)
+                    )
 
-            except Exception as e:
-                error_dialog = Gtk.MessageDialog(self.window, 0,
-                                                 Gtk.MessageType.WARNING,
-                                                 Gtk.ButtonsType.OK,
-                                                 _('Font loading error'))
-                error_text = _('Something happened when trying to load {font}.')
-                error_text += '\n' + str(e)
-                error_dialog.format_secondary_text(error_text.format(font=path))
-                error_response = error_dialog.run()
-                if error_response == Gtk.ResponseType.OK:
-                    error_dialog.destroy()
+            except Exception as exc:
+                print('Error loading ' + path)
+                print(exc)
+                error_text = _('Error: {error}.')
+                GLib.idle_add(
+                    self._show_error,
+                    error_text.format(error=exc)
+                )
 
         self.window.processing = False
-        self.window.stack.set_visible_child_name('main')
 
-
-    '''
-    PRIVATE FUNCTIONS
-    '''
+    def _show_error(self, text):
+        error = Adw.Toast.new(text)
+        self.window.toasts.add_toast(error)
 
     def _get_font_data(self, data_src):
         data = {}
@@ -88,7 +85,7 @@ class Loader(object):
         # Data used by UI
         data['name'] = data_src(4)
         data['version'] = data_src(5)
-        data['family'] = data_src(16) if data_src(16) else data_src(1)
+        data['family'] = data_src(16) or data_src(1)
         data['style'] = 'normal'
         data['weight'] = '400'
 
@@ -99,7 +96,7 @@ class Loader(object):
         data['name-slug'] = '-'.join(data['name'].split()).lower()
         data['family-slug'] = '-'.join(data['family'].split()).lower()
 
-        ws = data_src(17) if data_src(17) else data_src(2)
+        ws = data_src(17) or data_src(2)
         ws = ws.split()
 
         for s in ws:

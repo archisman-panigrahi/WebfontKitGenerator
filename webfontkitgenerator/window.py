@@ -4,198 +4,222 @@
 import os
 
 from gettext import gettext as _
-from gi.repository import Gdk, Gio, GLib, Gtk, Handy
+from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from webfontkitgenerator.generator import Generator
+from webfontkitgenerator.google import GoogleDialog
 from webfontkitgenerator.loader import Loader
 from webfontkitgenerator.options import Options
 from webfontkitgenerator.log import Log
 from webfontkitgenerator.sourceview import SourceView
-from webfontkitgenerator.font import Font, FontWidget
+from webfontkitgenerator.font import Font, FontRow
 
 
-@Gtk.Template(resource_path='/com/rafaelmardojai/WebfontKitGenerator/ui/window.ui')
-class Window(Handy.ApplicationWindow):
+@Gtk.Template(resource_path='/com/rafaelmardojai/WebfontKitGenerator/window.ui')
+class Window(Adw.ApplicationWindow):
     __gtype_name__ = 'Window'
+
+    processing = GObject.Property(type=bool, default=False)
 
     appstack = Gtk.Template.Child()
 
     progressbar = Gtk.Template.Child()
-    progressbar_label = Gtk.Template.Child()
+    progress = Gtk.Template.Child()
     cancel = Gtk.Template.Child()
 
-    finished_stack = Gtk.Template.Child()
-    import_html_frame = Gtk.Template.Child()
-    import_css_frame = Gtk.Template.Child()
+    finished_viewstack = Gtk.Template.Child()
+    import_html_box = Gtk.Template.Child()
+    import_css_box = Gtk.Template.Child()
     log_column = Gtk.Template.Child()
     open_files = Gtk.Template.Child()
 
-    btn_generate = Gtk.Template.Child()
-    btn_add_fonts = Gtk.Template.Child()
-
-    stack = Gtk.Template.Child()
+    viewstack = Gtk.Template.Child()
     fonts_box = Gtk.Template.Child()
     fonts_stack = Gtk.Template.Child()
     fonts_list = Gtk.Template.Child()
-    browse = Gtk.Template.Child()
+    path_revealer = Gtk.Template.Child()
     directory = Gtk.Template.Child()
+    toasts = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        self.processing = False
         self.options = Options()
         self.outpath = None
         self.outuri = None
-        self.log = Log(self.progressbar_label)
-
-        self.setup_widgets()
-
-        self.browse.connect('clicked', self.set_outpath)
-
+        self.log = Log()
         self.model = Gio.ListStore.new(Font)
-        self.model.connect('items-changed', self._change_ready_state)
-        self.fonts_list.bind_model(self.model, self._create_font_widget)
 
-        self.btn_generate.connect('clicked', self.on_generate)
-
-    def setup_widgets(self):
-        self.stack.add_titled(self.options, 'options', _('Options'))
-        self.stack.child_set_property(self.options, 'icon-name', 'emblem-system-symbolic')
-
-        self.log_column.add(self.log)
-        self.log.show_all()
-
-        self.end_html = SourceView()
-        self.end_html.set_language('html')
-        self.import_html_frame.add(self.end_html)
-
-        self.end_css = SourceView()
-        self.end_css.set_language('css')
-        self.import_css_frame.add(self.end_css)
-
-        self.open_files.connect('clicked', self.open_generation_dir)
-
-        # Drag and drop
-        targetentry = Gtk.TargetEntry.new('text/uri-list', 0, 0)
-        self.drag_dest_set(Gtk.DestDefaults.ALL, [targetentry], Gdk.DragAction.COPY)
-        self.connect('drag-data-received', self.on_drag_and_drop)
-
-    def on_drag_and_drop(self, _widget, _drag_context, _x, _y, data, _info, _time):
-        if self.appstack.get_visible_child_name() == 'main':
-            filenames = data.get_uris()
-            self.load_fonts(filenames)
-
-    def open_fonts(self, _widget=None):
-        font_filter = Gtk.FileFilter()
-        font_filter.set_name(_('OTF & TTF'))
-        font_filter.add_mime_type('font/otf')
-        font_filter.add_pattern('.otf')
-        font_filter.add_mime_type('font/ttf')
-        font_filter.add_pattern('.ttf')
-
-        filechooser = Gtk.FileChooserNative.new(
-            _('Open font files'),
+        self.fontschooser = Gtk.FileChooserNative.new(
+            _('Open Font Files'),
             self,
             Gtk.FileChooserAction.OPEN,
             None,
-            None)
-        filechooser.set_select_multiple(True)
-        filechooser.add_filter(font_filter)
-
-        response = filechooser.run()
-
-        if response == Gtk.ResponseType.ACCEPT:
-            files = filechooser.get_files()
-            if files:
-                self.load_fonts(files)
-
-    def load_fonts(self, files):
-        loader = Loader(self, self.model, files)
-        loader.load()
-
-    def on_generate(self, widget):
-            generator = Generator(self, self.outpath, self.model,
-                                  self.options.get_formats(),
-                                  self.options.get_subsetting(),
-                                  self.options.get_font_display())
-            generator.run()
-
-    def set_outpath(self, *args):
-        filechooser = Gtk.FileChooserNative.new(
-            _('Select output directory'),
+            None
+        )
+        self.outpathchooser = Gtk.FileChooserNative.new(
+            _('Select Output Directory'),
             self,
             Gtk.FileChooserAction.SELECT_FOLDER,
             None,
-            None)
-        response = filechooser.run()
+            None
+        )
 
+        self.setup_widgets()
+        self.setup_actions()
+
+        self.style_manager = self.get_application().get_style_manager()
+        self.style_manager.connect('notify::dark', self._on_dark_style)
+        self._on_dark_style(None, None)
+
+    def setup_widgets(self):
+        # Setup view stack pages
+        page = self.viewstack.add_titled(self.options, 'options', _('Options'))
+        page.set_icon_name('emblem-system-symbolic')
+
+        # Setup buttons
+        self.open_files.connect('clicked', self.open_generation_dir)
+
+        # Setup fonts list
+        self.fonts_list.bind_model(self.model, self._create_font_row)
+        self.model.connect('items-changed', lambda _l, _p, _r, _a: self._check_ready_state())
+        
+        # Setup log text view
+        self.log_column.set_child(self.log)
+
+        # Setup source views
+        self.end_html = SourceView()
+        self.end_html.set_language('html')
+        self.import_html_box.append(self.end_html)
+        self.end_css = SourceView()
+        self.end_css.set_language('css')
+        self.import_css_box.append(self.end_css)
+
+        # Setup fonts file chooser
+        fonts_filter = Gtk.FileFilter()
+        fonts_filter.set_name(_('OTF & TTF'))
+        fonts_filter.add_mime_type('font/otf')
+        fonts_filter.add_pattern('.otf')
+        fonts_filter.add_mime_type('font/ttf')
+        fonts_filter.add_pattern('.ttf')
+        self.fontschooser.add_filter(fonts_filter)
+        self.fontschooser.set_select_multiple(True)
+        self.fontschooser.connect('response', self._on_fontschooser_response)
+
+        # Setup outpath folder chooser
+        self.outpathchooser.connect('response', self._on_outpathchooser_response)
+
+        # Drag and drop
+        drop_target = Gtk.DropTarget.new(Gdk.FileList, Gdk.DragAction.COPY)
+        drop_target.connect("drop", self._on_drop)
+        self.add_controller(drop_target)
+
+    def setup_actions(self):
+        remove_font = Gio.SimpleAction.new('remove-font', GLib.VariantType.new('u'))
+        remove_font.connect('activate', self._on_remove_font)
+        self.add_action(remove_font)
+
+        open_ = Gio.SimpleAction.new('open', None)
+        open_.connect('activate', self._on_open)
+        self.add_action(open_)
+
+        google = Gio.SimpleAction.new('google', None)
+        google.connect('activate', self._on_google)
+        self.add_action(google)
+
+        set_outpath = Gio.SimpleAction.new('set-outpath', None)
+        set_outpath.connect('activate', self._on_set_outpath)
+        self.add_action(set_outpath)
+
+        generate = Gio.SimpleAction.new('generate', None)
+        generate.connect('activate', self._on_generate)
+        generate.set_enabled(False)
+        self.add_action(generate)
+
+        back = Gio.SimpleAction.new('back', None)
+        back.connect('activate', self._on_back)
+        self.add_action(back)
+        
+    def load_fonts(self, files):
+        loader = Loader(self, self.model)
+        loader.load(files)
+
+    def open_generation_dir(self, _widget):
+        Gio.app_info_launch_default_for_uri(self.outuri)
+
+    def _on_open(self, _action, _param):
+        if self.appstack.get_visible_child_name() == 'main':
+            self.fontschooser.show()
+
+    def _on_google(self, _action, _param):
+        dialog = GoogleDialog(self)
+        dialog.set_transient_for(self)
+        dialog.set_modal(True)
+        dialog.present()
+
+    def _on_set_outpath(self, _action, _param):
+        if self.appstack.get_visible_child_name() == 'main':
+            self.outpathchooser.show()
+
+    def _on_generate(self, _action, _param):
+        generator = Generator(
+            self, self.outpath, self.model,
+            self.options.get_formats(),
+            self.options.get_subsetting(),
+            self.options.get_font_display()
+        )
+        generator.run()
+
+    def _on_back(self, _action, _param):
+        if not self.processing:
+            self.appstack.set_visible_child_name('main')
+    
+    def _on_remove_font(self, _action, param):
+        self.model.remove(param.get_uint32())
+
+    def _on_fontschooser_response(self, dialog, response):
+        dialog.hide()
         if response == Gtk.ResponseType.ACCEPT:
-            path = filechooser.get_filename()
-            uri = filechooser.get_uri()
+            files = dialog.get_files()
+            if files:
+                self.load_fonts(files)
+
+    def _on_outpathchooser_response(self, dialog, response):
+        dialog.hide()
+        if response == Gtk.ResponseType.ACCEPT:
+            path = dialog.get_file().get_path()
+            uri = dialog.get_file().get_uri()
             name = os.path.basename(path)
-            filechooser.destroy()
 
             if os.access(path, os.W_OK):
                 self.outpath = path
                 self.outuri = uri
                 self.directory.set_label(name)
-                self._change_ready_state()
+                self._check_ready_state()
             else:
-                error_dialog = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
-                    Gtk.ButtonsType.OK, _('Output directory error'))
-                error_dialog.format_secondary_text(
-                    _("You don't have write access to the selected directory."))
-                error_response = error_dialog.run()
-                if error_response == Gtk.ResponseType.OK:
-                    error_dialog.destroy()
+                error = Adw.Toast.new(_("You don't have write access to the selected directory."))
+                self.toasts.add_toast(error)
 
-        elif response == Gtk.ResponseType.REJECT:
-            filechooser.destroy()
-
-    def open_generation_dir(self, *args):
-        Gio.app_info_launch_default_for_uri(self.outuri)
-
-        '''
-        fd = os.open(self.outuri, os.O_RDONLY)
-        # PyGObject
-        bus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
-        proxy = Gio.DBusProxy.new_sync(bus, Gio.DBusProxyFlags.NONE, None,
-                                   'org.freedesktop.portal.Desktop',
-                                   '/org/freedesktop/portal/desktop',
-                                   'org.freedesktop.portal.OpenURI', None)
-
-        proxy.OpenDirectory('(sha{sv})', '', fd, {})
-        # dbus-python
-        bus = dbus.SessionBus()
-        portal = bus.get_object(
-            'org.freedesktop.portal.Desktop',
-            '/org/freedesktop/portal/desktop'
-        )
-        iface = dbus.Interface(portal, 'org.freedesktop.portal.OpenURI')
-        self._request_path = iface.OpenDirectory(
-            '', dbus.types.UnixFd(fd), dbus.Dictionary(signature='sv')
-        )
-        '''
-
-
-    '''
-    PRIVATE
-    '''
-    def _create_font_widget(self, font):
-        widget = FontWidget(font, self.model)
+    def _create_font_row(self, font):
+        widget = FontRow(font.data)
         return widget
 
-    def _change_ready_state(self, *args, **kwargs):
-        children = True if len(self.model) > 0 else False
+    def _on_drop(self, _target, value, _x, _y):
+        if isinstance(value, Gdk.FileList) and self.appstack.get_visible_child_name() == 'main':
+            self.load_fonts(value.get_files())
 
-        if children and self.outpath:
-            self.btn_generate.set_sensitive(True)
-        else:
-            self.btn_generate.set_sensitive(False)
+    def _check_ready_state(self):
+        items = self.model.get_n_items() > 0
 
-        if children:
+        self.lookup_action('generate').set_enabled(items and self.outpath)
+        self.path_revealer.set_reveal_child(items)
+
+        if items:
             self.fonts_stack.set_visible_child_name('fonts')
         else:
             self.fonts_stack.set_visible_child_name('empty')
 
+    def _on_dark_style(self, _obj, _pspec):
+        dark = self.style_manager.get_dark()
+        self.end_html.set_dark_scheme(dark)
+        self.end_css.set_dark_scheme(dark)
