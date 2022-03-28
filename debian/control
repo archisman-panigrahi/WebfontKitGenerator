@@ -18,11 +18,11 @@ Vcs-Git: https://github.com/rafaelmardojai/WebfontKitGenerator.git
 Package: webfontkitgenerator
 Architecture: all
 Depends: ${misc:Depends},
-	gir1.2-gtk-3.0,
-	gir1.2-gtksource-4,
+	gir1.2-gtk-4.0,
+	gir1.2-gtksource-5,
 	libbrotli1,
 	python3-fonttools,
-	libhandy-1-0,
+	libadwaita-1-0,
 	python3-gi
 Description: Create @font-face kits easily
  Webfont Kit Generator is a simple utility that allows you to generate woff, woff2
