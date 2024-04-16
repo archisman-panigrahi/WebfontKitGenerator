@@ -32,7 +32,7 @@ Depends: ${misc:Depends},
 	python3-fonttools,
 	libadwaita-1-0,
 	python3-gi,
-        libsoup-3.0-2,
+        libsoup-3.0-0,
 Description: Create @font-face kits easily
  Webfont Kit Generator is a simple utility that allows you to generate woff, woff2
  and the necessary CSS boilerplate from non-web font formats (otf & ttf).
