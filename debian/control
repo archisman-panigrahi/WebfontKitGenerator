@@ -13,7 +13,8 @@ Build-Depends: debhelper-compat(=10),
         libgirepository1.0-dev,
         libadwaita-1-dev,
         libsoup-3.0-dev,
-        libgtksourceview-5-dev
+        libgtksourceview-5-dev,
+        python-gi-dev
 Standards-Version: 4.5.0
 Rules-Requires-Root: no
 Homepage: https://github.com/rafaelmardojai/WebfontKitGenerator
