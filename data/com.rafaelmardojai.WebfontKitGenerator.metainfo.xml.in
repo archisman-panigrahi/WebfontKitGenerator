@@ -9,16 +9,29 @@
     <p>
       Webfont Kit Generator is a simple utility that allows you to generate woff, woff2 and the necessary CSS boilerplate from non-web font formats (otf and ttf).
     </p>
+    <p>
+      Webfont Kit Generator also includes a tool to Download fonts from Google Fonts for self-hosting.
+    </p>
   </description>  
-  <url type="homepage">https://github.com/rafaelmardojai/webfont-kit-generator</url>
+  <url type="homepage">https://apps.gnome.org/WebfontKitGenerator/</url>
+  <url type="vcs-browser">https://github.com/rafaelmardojai/webfont-kit-generator/</url>
   <url type="bugtracker">https://github.com/rafaelmardojai/webfont-kit-generator/issues</url>
+  <url type="translate">https://www.transifex.com/rafaelmardojai/webfont-kit-generator/</url>
   <url type="donation">https://rafaelmardojai.com/donate/</url>
-  <developer_name>Rafael Mardojai CM</developer_name>
+  <!-- developer_name tag deprecated with Appstream 1.0 -->
+  <developer_name translate="no">Rafael Mardojai CM</developer_name>
+  <developer id="com.mardojai">
+      <name translate="no">Rafael Mardojai CM</name>
+  </developer>
   <update_contact>email_AT_rafaelmardojai.com</update_contact>
   <content_rating type="oars-1.1" />
-  
   <launchable type="desktop-id">com.rafaelmardojai.WebfontKitGenerator.desktop</launchable>
   <translation type="gettext">webfontkitgenerator</translation>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#cf6969</color>
+    <color type="primary" scheme_preference="dark">#652121</color>
+  </branding>
 
   <screenshots>
     <screenshot type="default">
@@ -37,10 +50,53 @@
       <image>https://raw.githubusercontent.com/rafaelmardojai/webfont-kit-generator/master/brand/screenshots/5.png</image>
     </screenshot>
   </screenshots>
-  
   <releases>
+  <release version="1.1.1" date="2024-04-01">
+      <description translate="no">
+        <ul>
+          <li>Translations Updates</li>
+          <li>Use new GNOME 46 adaptive dialogs</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.1.0" date="2023-09-25">
+      <description translate="no">
+        <ul>
+          <li>Font options are now an utility pane</li>
+          <li>Google Fonts importer now supports the old Google v1 CSS API url</li>
+          <li>Base64 encoding support</li>
+          <li>Update translations</li>
+          <li>Bug fixes</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.0.3" date="2023-03-22">
+      <description translate="no">
+        <ul>
+          <li>Update translations</li>
+          <li>Small code improvements</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.0.2" date="2022-10-09">
+      <description translate="no">
+        <ul>
+          <li>Use new Adwaita about window</li>
+          <li>Update translations</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.0.1" date="2022-07-16">
+      <description translate="no">
+        <ul>
+          <li>Update translations</li>
+          <li>Fixed symbolic icon installation</li>
+          <li>Code cleanup</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.0.0" date="2022-03-27">
-      <description>
+      <description translate="no">
         <ul>
           <li>Ported to GTK4 and libadwaita</li>
           <li>New Google Fonts importer</li>
@@ -51,7 +107,7 @@
       </description>
     </release>
     <release version="0.5.0" date="2021-07-13">
-      <description>
+      <description translate="no">
         <ul>
           <li>Drag and drop bug fix</li>
           <li>Fonts loader fixes</li>
@@ -61,7 +117,7 @@
       </description>
     </release>
     <release version="0.4.0" date="2021-05-02">
-      <description>
+      <description translate="no">
         <ul>
           <li>Open fonts from file manager</li>
           <li>Drag and Drop support</li>
@@ -72,7 +128,7 @@
       </description>
     </release>
     <release version="0.3.0" date="2020-06-17">
-      <description>
+      <description translate="no">
         <ul>
           <li>UI tweaks</li>
           <li>Code improvements</li>
@@ -80,7 +136,7 @@
       </description>
     </release>
     <release version="0.2.0" date="2020-05-30">
-      <description>
+      <description translate="no">
         <ul>
           <li>Add custom subsetting support</li>
           <li>Design and UX improvements</li>
@@ -89,7 +145,7 @@
       </description>
     </release>
     <release version="0.1.0" date="2020-05-25">
-      <description>
+      <description translate="no">
         <p>Initial release.</p>
       </description>
     </release>

@@ -1,25 +1,38 @@
 # Copyright 2020 Rafael Mardojai CM
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import base64
+from gettext import gettext as _
+from io import BytesIO
 import os
 import re
-
-from gettext import gettext as _
 from threading import Thread
-from gi.repository import GLib
+
+from fontTools.subset import Subsetter, parse_unicodes
 from fontTools.ttLib import TTFont
-from fontTools.subset import parse_unicodes, Subsetter
+from gi.repository import GLib
+
+from webfontkitgenerator.font import Font
 
 
 class Generator(object):
-
-    def __init__(self, window, path, fonts_list, formats, ranges, font_display):
+    def __init__(
+        self,
+        window,
+        path: str,
+        fonts_list: list[Font],
+        formats: list[str],
+        ranges: dict[str, str],
+        base64: bool,
+        font_display: str | None,
+    ):
         self.window = window
         self.stop = False
         self.path = path
         self.list = fonts_list
         self.formats = formats
         self.ranges = ranges
+        self.base64 = base64
         self.font_display = font_display
         self.css = {}
 
@@ -58,13 +71,12 @@ class Generator(object):
 
         self.window.processing = False
         self.window.appstack.set_visible_child_name('finished')
-        self.window.finished_viewstack.set_visible_child_name('info')
+        self.window.finished_stack.set_visible_child_name('info')
 
         return
 
-
     def _generate_font(self, filename, data):
-        name = data['name-slug']
+        # name = data['name-slug']
         log_text = _('Generating fonts for {name}:')
         self._append_log(log_text.format(name=data['name']), bold=True)
         progress_text = _('Generating {name}')
@@ -92,13 +104,13 @@ class Generator(object):
 
         if cmap:
             slug = data['family-slug']
-            self.css.setdefault(slug,{})
+            self.css.setdefault(slug, {})
 
             css = {
-                'font-family':  data['family'],
-                'font-style':   data['style'],
-                'font-weight':  data['weight'],
-                'src':          list(data['local'])
+                'font-family': data['family'],
+                'font-style': data['style'],
+                'font-weight': data['weight'],
+                'src': list(data['local']),
             }
 
             for format in self.formats:
@@ -111,18 +123,29 @@ class Generator(object):
                 if not os.path.exists(outfolder):
                     os.makedirs(outfolder)
 
-                font.save(os.path.join(self.path, filenameout))
-                css['src'].append(f'url({filename}) format("{format}")')
+                if self.base64:
+                    output_io = BytesIO()
+                    font.save(output_io)
+                    output = base64.b64encode(output_io.getvalue())
+                    output = output.decode("utf-8")
+                    css['src'].append(
+                        f'url(data:font/{format};charset=utf-8;base64,{output}) format("{format}")'
+                    )
+                else:
+                    font.save(os.path.join(self.path, filenameout))
+                    css['src'].append(f'url({filename}) format("{format}")')
 
                 self.progress += 1
-                gen_text = _('Generated <i>{filename}</i> with <i>{count}</i> glyphs.')
+                gen_text = _(
+                    'Generated <i>{filename}</i> with <i>{count}</i> glyphs.'
+                )
                 gen_text = gen_text.format(filename=filenameout, count=count)
                 self._append_log(gen_text)
 
             if range:
                 css['unicode-range'] = self.ranges[range]
-            if self.font_display > 0:
-                css['font-display'] = self.__get_font_display(self.font_display)
+            if self.font_display is not None:
+                css['font-display'] = self.font_display
             self.css[slug][name] = css
 
         else:
@@ -149,10 +172,12 @@ class Generator(object):
         for family, subset in self.css.items():
             family_css = ''
             for font, properties in subset.items():
-                ff = ff_template.format(**{
-                    'comment': font,
-                    'styles': self.__dict_to_styles(properties),
-                })
+                ff = ff_template.format(
+                    **{
+                        'comment': font,
+                        'styles': self._dict_to_styles(properties),
+                    }
+                )
                 family_css += ff + '\n'
             families_css[family] = family_css
 
@@ -190,11 +215,10 @@ class Generator(object):
             html.append(f'<link href="{sheet}" rel="stylesheet">')
             css.append(f'@import url("{sheet}");')
 
-        self.window.end_html.set_text('\n'.join(html))
-        self.window.end_css.set_text('\n'.join(css))
+        self.window.src_html.set_text('\n'.join(html))
+        self.window.src_css.set_text('\n'.join(css))
 
-
-    def __dict_to_styles(self, style_dict):
+    def _dict_to_styles(self, style_dict):
         properties = []
 
         for i, (k, v) in enumerate(style_dict.items()):
@@ -202,8 +226,3 @@ class Generator(object):
             properties.append('\t{}: {};'.format(k, v))
 
         return '\n'.join(properties)
-
-    def __get_font_display(self, fd):
-        fds = ['auto', 'block', 'swap', 'fallback', 'optional']
-        return fds[fd - 1]
-

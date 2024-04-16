@@ -1,30 +1,22 @@
-# Copyright 2020-2021 Rafael Mardojai CM
+# Copyright 2020 Rafael Mardojai CM
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import os
 from urllib.parse import urlparse, unquote
 
 from gettext import gettext as _
-from threading import Thread
-from gi.repository import Adw, GLib, Gtk
+from gi.repository import Adw, GLib
 from fontTools.ttLib import TTFont
 
 from webfontkitgenerator.font import Font
 
 
 class Loader(object):
-
     def __init__(self, window, model):
         self.window = window
         self.model = model
 
     def load(self, files):
-        thread = Thread(target=self._load, args=(files,))
-        thread.daemon = True
-        thread.start()
-
-
-    def _load(self, files):
         self.window.processing = True
 
         for f in files:
@@ -47,20 +39,18 @@ class Loader(object):
                     font = Font(path, data)
                     GLib.idle_add(self.model.append, font)
                 else:
-                    error_text = _("You don't have read access to {font} or it doesn't exists.")
+                    error_text = _(
+                        'You don’t have read access to {font} or it doesn’t exists.'  # noqa
+                    )
                     GLib.idle_add(
-                        self._show_error,
-                        error_text.format(font=path)
+                        self._show_error, error_text.format(font=path)
                     )
 
             except Exception as exc:
                 print('Error loading ' + path)
                 print(exc)
                 error_text = _('Error: {error}.')
-                GLib.idle_add(
-                    self._show_error,
-                    error_text.format(error=exc)
-                )
+                GLib.idle_add(self._show_error, error_text.format(error=exc))
 
         self.window.processing = False
 
@@ -71,15 +61,15 @@ class Loader(object):
     def _get_font_data(self, data_src):
         data = {}
         weights = {
-            'Thin':        '100',
+            'Thin': '100',
             'Extra-light': '200',
-            'Light':       '300',
-            'Regular':     '400',
-            'Medium':      '500',
-            'Semi-bold':   '600',
-            'Bold':        '700',
-            'Extra-bold':  '800',
-            'Black':       '900',
+            'Light': '300',
+            'Regular': '400',
+            'Medium': '500',
+            'Semi-bold': '600',
+            'Bold': '700',
+            'Extra-bold': '800',
+            'Black': '900',
         }
 
         # Data used by UI
@@ -106,4 +96,3 @@ class Loader(object):
                 data['weight'] = weights[s]
 
         return data
-

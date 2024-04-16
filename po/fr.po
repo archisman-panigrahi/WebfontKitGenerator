@@ -3,31 +3,36 @@
 # This file is distributed under the same license as the webfontkitgenerator package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Vasco Compain <vasco.gribouille@gmail.com>, 2022
+#
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: webfontkitgenerator\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 09:15-0500\n"
-"PO-Revision-Date: 2020-10-25 02:18+0200\n"
-"Last-Translator: \n"
-"Language-Team: https://github.com/martin-sk\n"
-"Language: sk_SK\n"
+"PO-Revision-Date: 2022-04-13 02:00+0000\n"
+"Last-Translator: Vasco Compain <vasco.gribouille@gmail.com>, 2022\n"
+"Language-Team: French (https://www.transifex.com/rafaelmardojai/teams/135056/"
+"fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
+"1000000 == 0 ? 1 : 2;\n"
 
 #: data/com.rafaelmardojai.WebfontKitGenerator.desktop.in:3
 #: data/com.rafaelmardojai.WebfontKitGenerator.metainfo.xml.in:6
 #: webfontkitgenerator/main.py:36
 msgid "Webfont Kit Generator"
-msgstr "Webfont Kit Generator"
+msgstr "Genérateur de Kit Webfont"
 
 #: data/com.rafaelmardojai.WebfontKitGenerator.desktop.in:4
 #: data/com.rafaelmardojai.WebfontKitGenerator.metainfo.xml.in:7
 msgid "Create @font-face kits easily"
-msgstr "Vytvorte @font-face jednoducho"
+msgstr "Créez des kits @font-face facilement"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/com.rafaelmardojai.WebfontKitGenerator.desktop.in:11
@@ -40,56 +45,57 @@ msgid ""
 "woff2 and the necessary CSS boilerplate from non-web font formats (otf and "
 "ttf)."
 msgstr ""
-"Webfont Kit Generator je jednoduchý nástroj, ktorý vám umožňuje generovať "
-"woff, woff2 a potrebný CSS pre iné ako webové formáty písma (otf a ttf)."
+"Genérateur de Kit Webfont est un logiciel utilitaire qui vous permet de "
+"genérer des des fichiers .woff, .woff2 et les fichiers CSS correspondant "
+"depuis les formats non web (.otf et .ttf)."
 
 #: data/com.rafaelmardojai.WebfontKitGenerator.metainfo.xml.in:12
+#, fuzzy
 msgid ""
 "Webfont Kit Generator also includes a tool to Download fonts from Google "
 "Fonts for self-hosting."
-msgstr ""
+msgstr "Télécharger les polices depuis Google Fonts pour les hébérger."
 
 #: webfontkitgenerator/window.blp:9 webfontkitgenerator/google.blp:28
 msgid "Import from Google Fonts"
-msgstr ""
+msgstr "Importer depuis Google Fonts"
 
 #: webfontkitgenerator/window.blp:18
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Raccourcis Claviers"
 
 #: webfontkitgenerator/window.blp:23
-#, fuzzy
 msgid "_About Webfont Kit Generator"
-msgstr "Webfont Kit Generator"
+msgstr "_A propos du Genérateur de Kit Webfont"
 
 #: webfontkitgenerator/window.blp:49 webfontkitgenerator/window.blp:104
 msgid "Open Fonts"
-msgstr "Otvoriť písma"
+msgstr "Selectionner des polices"
 
 #: webfontkitgenerator/window.blp:56
+#, fuzzy
 msgid "Main Menu"
-msgstr ""
+msgstr "Menu"
 
 #: webfontkitgenerator/window.blp:82
 msgid "Add some fonts"
-msgstr "Pridajte písma"
+msgstr "Ajouter des polices"
 
 #: webfontkitgenerator/window.blp:175 webfontkitgenerator/window.py:57
-#, fuzzy
 msgid "Select Output Directory"
-msgstr "Vyberte výstupný adresár"
+msgstr "Choisir le dossier de destination"
 
 #: webfontkitgenerator/window.blp:186
 msgid "Browse..."
-msgstr "Vyhľadať..."
+msgstr "Naviguer..."
 
 #: webfontkitgenerator/window.blp:193
 msgid "Generate"
-msgstr "Generovať"
+msgstr "Générer"
 
 #: webfontkitgenerator/window.blp:221 webfontkitgenerator/google.blp:94
 msgid "Cancel"
-msgstr "Zrušiť"
+msgstr "Annuler"
 
 #: webfontkitgenerator/window.blp:248
 msgid "Back"
@@ -97,71 +103,69 @@ msgstr ""
 
 #: webfontkitgenerator/window.blp:256
 msgid "Information"
-msgstr "Informácia"
+msgstr "Status"
 
 #: webfontkitgenerator/window.blp:263 webfontkitgenerator/generator.py:70
 msgid "Generation finished!"
-msgstr "Generovanie je hotové!"
+msgstr "Génération terminée !"
 
 #: webfontkitgenerator/window.blp:273
 msgid "To link your fonts, copy the code below into the head of your HTML:"
 msgstr ""
-"Ak chcete použiť svoje písma, skopírujte nižšie uvedený kód do hlavičky kódu "
-"HTML:"
+"Pour utiliser vos polices, copiez le code ci-dessous dans la section head de "
+"votre HTML:"
 
 #: webfontkitgenerator/window.blp:282
-#, fuzzy
 msgid "Or import it directly to your CSS:"
-msgstr "Alebo ich naimportujte priamo do CSS:"
+msgstr "Ou importez directement dans votre CSS:"
 
 #: webfontkitgenerator/window.blp:291
 msgid "Open in Files"
-msgstr "Otvoriť v súboroch"
+msgstr "Afficher dans les fichiers"
 
 #: webfontkitgenerator/window.blp:310
 msgid "Logs"
-msgstr "Logy"
+msgstr "Journaux"
 
 #: webfontkitgenerator/options.blp:7
-#, fuzzy
 msgid "Options"
-msgstr "Výstupné nastavenia"
+msgstr "Paramètres"
 
 #: webfontkitgenerator/options.blp:31
 msgid "Subsetting"
-msgstr "Podnastavenia"
+msgstr "Sous-ensembles"
 
 #: webfontkitgenerator/options.blp:32
 msgid "Limit the character set to reduce file size"
-msgstr "Ak chcete zmenšiť veľkosť súboru, obmedzte znakovú sadu"
+msgstr "Limitez les types de caractères pour reduire la taille des fichiers."
 
 #: webfontkitgenerator/options.blp:51
 msgid "Latin"
-msgstr "Latinka"
+msgstr "Latin"
 
 #: webfontkitgenerator/options.blp:60
 msgid "Cyrillic"
-msgstr "Azbuka"
+msgstr "Cyrilique"
 
 #: webfontkitgenerator/options.blp:69
 msgid "Greek"
-msgstr "Grécke"
+msgstr "Grec"
 
 #: webfontkitgenerator/options.blp:78
 msgid "Vietnamese"
-msgstr "Vietnamské"
+msgstr "Vietnamien"
 
 #: webfontkitgenerator/options.blp:95
 msgid "Latin Extended"
-msgstr "Rozšírená latinka"
+msgstr "Latin Étendu"
 
 #: webfontkitgenerator/options.blp:104
 msgid "Cyrillic Extended"
-msgstr "Azbuka rozšírená"
+msgstr "Cyrilique Étendu"
 
 #: webfontkitgenerator/options.blp:113
 msgid "Greek Extended"
-msgstr "Grécky rozšírený"
+msgstr "Grec Étendu"
 
 #: webfontkitgenerator/options.blp:122
 msgid "Devanagari"
@@ -169,15 +173,15 @@ msgstr "Devanagari"
 
 #: webfontkitgenerator/options.blp:145
 msgid "Custom"
-msgstr "Vlastné"
+msgstr "Customisé"
 
 #: webfontkitgenerator/options.blp:150
 msgid ""
 "Comma separated values. Single hex values and/or ranges separated with "
 "hyphens."
 msgstr ""
-"Hodnoty oddelené čiarkou. Jednotlivé hexadecimálne hodnoty alebo rozsahy "
-"oddelené pomlčkami."
+"Séparez les valeurs par des virgules. Valeurs uniques hexadécimales et/ou "
+"intervalle séparé par des tirets."
 
 #: webfontkitgenerator/options.blp:173
 msgid "CSS"
@@ -193,204 +197,172 @@ msgstr ""
 
 #: webfontkitgenerator/options.blp:181
 msgid "Font display"
-msgstr "Zobrazenie písma"
+msgstr "Affichage des polices"
 
 #: webfontkitgenerator/options.blp:182
 msgid "The CSS font-display descriptor"
-msgstr "Deskriptor zobrazenia písma CSS"
+msgstr "La propriétée CSS font-display"
 
 #: webfontkitgenerator/options.blp:185
 msgid "Disabled"
-msgstr "Zakázané"
+msgstr "Désactivé"
 
 #: webfontkitgenerator/google.blp:29
 msgid "Download fonts from Google Fonts for self-hosting"
-msgstr ""
+msgstr "Télécharger les polices depuis Google Fonts pour les hébérger."
 
 #: webfontkitgenerator/google.blp:64
 msgid "Download Fonts"
-msgstr ""
+msgstr "Télécharger les polices"
 
 #: webfontkitgenerator/gtk/help-overlay.blp:11
-#, fuzzy
 msgctxt "shortcut window"
 msgid "General"
-msgstr "Generovať"
+msgstr "Général"
 
 #: webfontkitgenerator/gtk/help-overlay.blp:14
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "Afficher les raccourcis clavier"
 
 #: webfontkitgenerator/gtk/help-overlay.blp:19
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Open Fonts"
-msgstr "Otvoriť písma"
+msgstr "Selectionner des polices"
 
 #: webfontkitgenerator/gtk/help-overlay.blp:24
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Select Output Directory"
-msgstr "Vyberte výstupný adresár"
+msgstr "Choisir le dossier de destination"
 
 #: webfontkitgenerator/gtk/help-overlay.blp:29
 msgctxt "shortcut window"
 msgid "Google Fonts Importer"
-msgstr ""
+msgstr "Importer depuis Google Fonts"
 
 #: webfontkitgenerator/gtk/help-overlay.blp:34
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Generate"
-msgstr "Generovať"
+msgstr "Générer"
 
 #: webfontkitgenerator/main.py:74
 msgid "translator-credits"
 msgstr ""
 
 #: webfontkitgenerator/window.py:61
-#, fuzzy
 msgid "Open Font Files"
-msgstr "Otvoriť súbory písiem"
+msgstr "Séléctionner des fichiers de police"
 
 #: webfontkitgenerator/window.py:64
 msgid "OTF & TTF"
-msgstr "OTF a TTF"
+msgstr "OTF et TTF"
 
 #: webfontkitgenerator/window.py:161
 #, fuzzy
 msgid "You don’t have write access to the selected directory."
-msgstr "Nemáte dostatočné práva na zápis do zvolehéno adresára."
+msgstr "Vous n'avez pas la permission d'écrire dans le dossier séléctionné."
 
 #. name = data['name-slug']
 #: webfontkitgenerator/generator.py:80
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Generating fonts for {name}:"
-msgstr "Generuje sa písmo pre %s:"
+msgstr "Génération des polices pour {name}:"
 
 #: webfontkitgenerator/generator.py:82
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Generating {name}"
-msgstr "Generovanie CSS:"
+msgstr "Génération de {name}"
 
 #: webfontkitgenerator/generator.py:140
 #, python-brace-format
 msgid "Generated <i>{filename}</i> with <i>{count}</i> glyphs."
-msgstr "Vygenerované <i>{filename}</i> s <i>{count}</i> znakmi."
+msgstr "<i>{filename}</i> généré avec <i>{count}</i> glyphes."
 
 #: webfontkitgenerator/generator.py:154
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "No glyphs where found for {range}. Skipping."
-msgstr "Pre glyfy sa nenašli žiadne znaky. Preskakujem."
+msgstr "Aucun gplyhe n'a été trouvé pour {range}, il sera ignoré."
 
 #: webfontkitgenerator/generator.py:169
 msgid "Generating CSS:"
-msgstr "Generovanie CSS:"
+msgstr "Génération du CSS:"
 
 #: webfontkitgenerator/generator.py:170
 msgid "Finishing"
-msgstr ""
+msgstr "Complétion"
 
 #: webfontkitgenerator/generator.py:191
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Generated <i>{filename}</i>."
-msgstr "Vygenerované <i>%s</i>."
+msgstr "<i>{filename}</i> généré."
 
 #: webfontkitgenerator/generator.py:195
 msgid "There is no CSS to generate."
-msgstr "Žiadne CSS na vygenerovanie."
+msgstr "Il n'y a pas de CSS à générer."
 
 #: webfontkitgenerator/google.py:55
 msgid "Loading Google Fonts Database"
-msgstr ""
+msgstr "Chargement de la base de donnée de Google Fonts"
 
 #: webfontkitgenerator/google.py:114
+#, fuzzy
 msgid "Couldn’t download the Google Fonts data."
-msgstr ""
+msgstr "Impossible de télécharger les données de Google Fonts."
 
 #: webfontkitgenerator/google.py:143
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Couldn’t find the {variant} variant for {family_name}."
 msgstr ""
+"Impossible de trouver la variante {variant} de la famille {family_name}."
 
 #. If no family found, add error to list
 #: webfontkitgenerator/google.py:151
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Couldn’t find the {family_name} font family."
-msgstr ""
+msgstr "Impossible de trouver la famille de police {family_name}."
 
 #. If not files found at all, show general error and terminate
 #: webfontkitgenerator/google.py:160
+#, fuzzy
 msgid "Couldn’t find any fonts for the given url."
-msgstr ""
+msgstr "Aucune police n'a été trouvée a cette addresse."
 
 #: webfontkitgenerator/google.py:235
 msgid "Please set a valid url"
-msgstr ""
+msgstr "Merci de saisir une URL valide"
 
 #: webfontkitgenerator/google.py:259
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Downloading {name}"
-msgstr "Chyba pri nahrávaní písma"
+msgstr "Téléchargement de {name}"
 
 #: webfontkitgenerator/google.py:283
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Couldn’t download the font file for {name}."
-msgstr ""
+msgstr "Impossible de télécharger le fichier de police pour {name}."
 
 #: webfontkitgenerator/google.py:300
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Couldn’t write the font file for {name}."
-msgstr ""
+msgstr "Impossible d'écrire le fichier de police pour {name}."
 
 #: webfontkitgenerator/loader.py:43
 #, fuzzy, python-brace-format
 msgid "You don’t have read access to {font} or it doesn’t exists."
-msgstr "Nemáte právo na čítanie písma {font}, alebo neexistuje."
+msgstr ""
+"Vous n'avez pas la permission de lire le fichier {font} ou celui-ci n'existe "
+"pas,"
 
 #: webfontkitgenerator/loader.py:52
 #, python-brace-format
 msgid "Error: {error}."
-msgstr ""
+msgstr "Erreur: {error}."
 
 #~ msgid "Rafael Mardojai CM"
 #~ msgstr "Rafael Mardojai CM"
 
 #~ msgid "Fonts"
-#~ msgstr "Písma"
+#~ msgstr "Polices"
 
-#~ msgid "Output directory"
-#~ msgstr "Výstupný adresár"
-
-#~ msgid "Select a directory"
-#~ msgstr "Vyberte adresár"
-
-#, fuzzy
-#~ msgid "Output directory error"
-#~ msgstr "Výstupný adresár"
-
-#, python-brace-format
-#~ msgid "Something happened when trying to load {font}."
-#~ msgstr "Niečo sa pokazilo počas nahrávania písma {font}."
-
-#~ msgid "Webfont Kit Generator uses fontTools python library under the hood."
-#~ msgstr "Webfont Kit Generator využíva pythonovú knižnicu fontTools."
-
-#~ msgid "Source Fonts"
-#~ msgstr "Zdroj písiem"
-
-#~ msgid ""
-#~ "Create @font-face kits easily\n"
-#~ "Basen on python fontTools library\n"
-#~ "    "
-#~ msgstr ""
-#~ "Vytvorte @font-face jednoducho\n"
-#~ "Založené na python fontTools knižnici\n"
-#~ "    "
-
-#~ msgid "OTF Fonts"
-#~ msgstr "OTF písma"
-
-#~ msgid "TTF Fonts"
-#~ msgstr "TTF písma"
+#~ msgid "Update your url to CSS API v2"
+#~ msgstr "Mettez à jour votre URL vers la CSS API v2"
