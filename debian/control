@@ -10,7 +10,7 @@ Build-Depends: debhelper-compat(=10),
 	libglib2.0-dev,
 	appstream,
         cmake,
-        gobject-introspection
+        libgirepository1.0-dev
 Standards-Version: 4.5.0
 Rules-Requires-Root: no
 Homepage: https://github.com/rafaelmardojai/WebfontKitGenerator
