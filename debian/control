@@ -8,7 +8,9 @@ Build-Depends: debhelper-compat(=10),
 	meson (>= 0.50),
 	pkg-config,
 	libglib2.0-dev,
-	appstream
+	appstream,
+        cmake,
+        gobject-introspection
 Standards-Version: 4.5.0
 Rules-Requires-Root: no
 Homepage: https://github.com/rafaelmardojai/WebfontKitGenerator
